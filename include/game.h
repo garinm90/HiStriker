@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-class game
+class Game
 {
 private:
     int gameAttract;
@@ -16,13 +16,20 @@ private:
     int _gameChildPin;
 
 public:
-    game(int gameManPin, int gameWomanPin, int gameChildPin);
+    Game(int gameManPin, int gameWomanPin, int gameChildPin);
 
-    void setGame(int gameManPin, int gameWomanPin, int gameChildPin);
-    int getAttract() { return gameAttract; }
-    int getMan() { return gameMan; }
+    // void setGame(int gameManPin, int gameWomanPin, int gameChildPin);
+    int getAttract()
+    {
+        return gameAttract;
+    }
+    int getMan() const { return gameMan; }
     int getWoman() { return gameWoman; }
     int getChild() { return gameChild; }
+    int getManPin() const { return _gameManPin; }
+    int getWomanPin() { return _gameWomManPin; }
+    int getChildPin() { return _gameChildPin; }
+    void setGame(int game){};
 };
 
 #endif

@@ -1,12 +1,22 @@
 #include <Arduino.h>
-#include <Bounce2.h>
 #include "game.h"
+#include "game.cpp"
+#include <Bounce2.h>
 
-const int led = LED_BUILTIN;
+Game game(0, 1, 2);
+Bounce manPin = Bounce();
+Bounce womanPin = Bounce();
+Bounce childPin = Bounce();
 
 void setup()
 {
-  pinMode(led, OUTPUT);
+  Serial.begin(9600);
+  manPin.attach(game.getManPin(), INPUT_PULLUP);
+  womanPin.attach(game.getWomanPin(), INPUT_PULLUP);
+  childPin.attach(game.getChildPin(), INPUT_PULLUP);
+  childPin.interval(25);
+  womanPin.interval(25);
+  manPin.interval(25);
 }
 
 void loop()
@@ -36,8 +46,11 @@ void loop()
     Total plays increase.
 
   */
-  digitalWrite(led, HIGH);
-  delay(100);
-  digitalWrite(led, LOW);
-  delay(100);
+  manPin.update();
+  womanPin.update();
+  childPin.update();
+  if (manPin.rose())
+  {
+    Serial.println("Button Pressed");
+  }
 }
